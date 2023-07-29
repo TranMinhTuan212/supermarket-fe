@@ -1,0 +1,16 @@
+.wapper{
+    padding: 2rem;
+}
+
+.topic{
+    font-size: 3.4rem;
+    font-weight: bold;
+    opacity: .8;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+}

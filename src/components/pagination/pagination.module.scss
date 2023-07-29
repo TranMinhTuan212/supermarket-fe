@@ -1,0 +1,32 @@
+.wapper{
+    display: flex;
+    align-items: center;
+}
+
+.item{
+    width: 2.2rem;
+    height: 2.6rem;
+    border-radius: 1.4rem;
+    color: var(--defaul-primary);
+    text-align: center;
+    line-height: 2.6rem;
+    margin: 0 .5rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color .1s ease;
+}
+
+.active{
+    background-color: var(--defaul-primary);
+    color: var(--background-light);
+}
+
+.icon{
+    font-size: 2rem;
+    transition: color .1s ease;
+}
+
+.hiden{
+    color: var(--background-light);
+}

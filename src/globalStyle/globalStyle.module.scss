@@ -1,0 +1,51 @@
+
+
+:root{
+    --defaul-primary: #134e4a;
+    --primary: #13864c;
+    --background-default: #f3f4f6;
+    --danger:red;
+    --warning: rgb(255, 157, 0);
+    --primary-hover:#0f766e;
+    --background-light: #fff;
+    --green-text: #16a34a;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    background-color: var(--background-default);
+}
+
+input{
+    outline: none;
+    border: none;
+}
+
+button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+ul, li{
+    padding: 0;
+    list-style: none;
+}
+
+select{
+    border: none;
+    outline: none;
+}

@@ -1,0 +1,41 @@
+.wapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.side-bar {
+  transition: width 0.2s ease-in-out;
+  background-color: black;
+  height: 100vh;
+  border-top-right-radius: 4rem;
+  background-color: var(--defaul-primary);
+}
+
+.content {
+  transition: width 0.3s ease;
+  height: 100vh;
+  flex: 1;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+/* width */
+.content::-webkit-scrollbar {
+  width: .8rem;
+}
+
+/* Track */
+.content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 1rem;
+}
+
+/* Handle on hover */
+.content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,40 @@
+.wapper{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: .4rem 0;
+    margin: .6rem 1rem;
+    border-radius: 1.2rem;
+    &:hover{
+        background-color: var(--primary-hover);
+    }
+}
+
+.menu{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 90%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu-icon{
+    font-size: 3rem;
+    margin-right: 1rem;
+    padding-left: .9rem;
+    padding-right: .4rem;
+}
+
+.menu-name{
+    font-size: 1.8rem;
+}
+
+.nav-link{
+    text-decoration: none;
+}
+
+.active{
+    background-color: var(--primary-hover);
+}
+

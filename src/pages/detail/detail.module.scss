@@ -1,0 +1,22 @@
+.wapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+}
+
+.photo{
+    width: 24rem;
+    height: 24rem;
+    border: dotted .4rem #ccc;
+    border-radius: 1.4rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.input-wapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

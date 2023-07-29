@@ -1,0 +1,36 @@
+.wapper{
+    position: relative;
+    width: 22rem;
+    margin-bottom: 3rem;
+}
+
+.select {
+  border: 0.2rem solid var(--background-default);
+  border-radius: 1rem;
+  height: 4rem;
+  width: 100%;
+  padding: 0 1rem;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-weight: bold;
+  padding-left: 2rem;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.icon{
+    position: absolute;
+    right: 0;
+    top: .6rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    opacity: .8;
+}

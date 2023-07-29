@@ -1,0 +1,16 @@
+.wapper{
+    background-image: url('../../../public/images/supermarket.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.form-login{
+    width: fit-content;
+    height: fit-content;
+    margin-left: 50%;
+    transform: translate(-50%, 40%);
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 2rem;
+}

@@ -1,0 +1,26 @@
+.wapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.text{
+    margin-left: 1rem;
+}
+
+.INTERRUPTIVE{
+    color: black;
+}
+
+.ON_SALE{
+    color: var(--green-text);
+}
+
+.OUT_OF_STOCK{
+    color: var(--background-default);
+}
+
+.WAITING_APPROVE{
+    color: var(--danger);
+}

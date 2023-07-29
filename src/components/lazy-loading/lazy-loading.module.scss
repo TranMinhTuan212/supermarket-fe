@@ -1,0 +1,40 @@
+// .wapper {
+//   width: 10rem;
+//   height: 16rem;
+//   margin-left: 50%;
+//   transform: translate(-50%, 70%);
+// }
+
+.loader {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  z-index: 99;
+  border: .4rem solid #f3f3f3;
+  border-radius: 50%;
+  border-top: .4rem solid blue;
+  border-right: .4rem solid green;
+  border-bottom: .4rem solid red;
+  border-left: .4rem solid pink;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.form-register{
+  position: fixed;
+  inset: 0;
+  background-color: rgba($color: #ccc, $alpha: .1);
+}

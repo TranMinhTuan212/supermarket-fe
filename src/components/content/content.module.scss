@@ -1,0 +1,80 @@
+.wapper{
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.header{
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.cart{
+    width: 4rem;
+    height: 4rem;
+    font-size: 3rem;
+    margin-right: 2rem;
+}
+
+.user-wapper{
+    position: relative;
+}
+
+.user{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover .information{
+        display: block;
+        animation: show .2s ease;
+    }
+}
+
+.information{
+    position: absolute;
+    width: 20rem;
+    background-color: #cccccc;
+    top: 110%;
+    right: 0;
+    box-shadow: .4rem 1rem 1rem 1rem #ccc;
+    display: none;
+    animation: hiden .2s ease;
+    z-index: 999;
+
+    &::before{
+        position: absolute;
+        display: block;
+        content: "";
+        width: 100%;
+        height:  .8rem;
+        top: -.8rem;
+        background-color: transparent;
+    }
+}
+
+
+@keyframes show{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+@keyframes hiden{
+    from{opacity: 1;}
+    to{opacity: 0;}
+}
+
+.full{
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    background-color: #fff;
+    min-height: 90vh;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}

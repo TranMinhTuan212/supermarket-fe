@@ -1,0 +1,28 @@
+.wapper{
+    // padding: 3rem;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--background-default);
+}
+
+.search{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 3rem;
+}
+
+.list{
+    padding: 0 3rem;
+}
+
+.pagination{
+    width: fit-content;
+    margin-left: auto;
+    padding: 3rem;
+}
+

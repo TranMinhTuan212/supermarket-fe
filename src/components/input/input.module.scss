@@ -1,0 +1,32 @@
+.wapper{
+    height: 10rem;
+}
+
+.my-input{
+    padding: .4rem .8rem;
+    caret-color: #ccc;
+
+    &:focus{
+        box-shadow: .2rem .2rem .1rem #cccccc;
+    }
+}
+
+.medium{
+    border: .1rem solid #ccc;
+    border-radius: 1rem;
+    height: 3.4rem;
+    width: 50rem;
+}
+
+.message{
+    color: var(--danger);
+    margin-top: 1rem;
+}
+
+.large{
+    width: 100%;
+}
+
+.small{
+    width: 30rem;
+}

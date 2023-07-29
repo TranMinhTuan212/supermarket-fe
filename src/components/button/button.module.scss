@@ -1,0 +1,82 @@
+.wapper{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: var(--defaul-primary);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 1rem;
+    color: #fff;
+    padding: .6rem 2rem;
+    cursor: pointer;
+    transition: opacity .2s ease-in-out;
+
+    &:hover{
+        opacity: .6;
+    }
+}
+
+.icon{
+    margin-right: 1rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+}
+
+.my-button{
+    color: inherit;
+    font-weight: inherit;
+}
+
+.large{
+    padding: 1rem 4rem;
+}
+
+.outlinePrimary{
+    background-color: #fff;
+    border: solid .3rem var(--primary);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.outlineDanger{
+    background-color: #fff;
+    border: solid .3rem var(--danger);
+    color: var(--danger);
+    font-weight: bold;
+}
+
+.textButton{
+    width: 100%;
+    border-radius: 0;
+    padding: 1rem 1.4rem;
+    background-color: var(--background-light);
+    color: black;
+
+    .icon{
+        margin-right: .4rem;
+    }
+
+    &:last-child{
+        border-bottom: .1rem solid #ccc;
+    }
+}
+
+.topicButton{
+    background-color: var(--background-light);
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+    color: black;
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: .7;
+}
+
+.backgroundDark{
+    background-color: var(--background-default);
+}
+
+.backgrounLight{
+    background-color: var(--background-light);
+}
