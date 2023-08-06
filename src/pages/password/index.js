@@ -10,7 +10,7 @@ import { pages } from "~/config";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading } from "~/provider/action";
+import { setLoading, setPoPup } from "~/provider/action";
 
 const cx = classNames.bind(styles)
 
@@ -67,12 +67,12 @@ function Password() {
             axios.put(`${apiLink}user/change-password`, data, { headers })
             .then(response => {
                 if(response.data.status === 200){
-                    alert('Đổi mật khẩu thành công !')
+                    dispatch(setPoPup({ type: true, text: response.data.message }))
                 }else{
                     if(response.data.status === 500){
-                        alert(response.data.message)
+                        dispatch(setPoPup({ type: false, text: response.data.message }))
                     }else{
-                        alert('Có lỗi, vui lòng thử lại')
+                        dispatch(setPoPup({ type: true, text: 'Có lỗi, thử lại sau' }))
                     }
                 }
                 setPassword('')
@@ -81,7 +81,7 @@ function Password() {
                 dispatch(setLoading(false))
             })
             .catch(error=>{
-                alert('Có lỗi, thử lại sau')
+                dispatch(setPoPup({ type: true, text: 'Có lỗi, thử lại sau' }))
                 dispatch(setLoading(false))
             })
         }
@@ -98,7 +98,7 @@ function Password() {
             <div className={cx('form')}>
                 <Input required setRef={passwordRef} state={password} setState={setPassword} type="password" topic="Nhập mật khẩu cũ"/>
                 <Input required setRef={newPasswordRef} state={newPassword} setState={setNewPassword} type="password" topic="Nhập mật khẩu mới"/>
-                <Input required setRef={reNewPasswordRef} state={rePassword} setState={setRePassword} type="password" topic="Nhập lại mật khẩu cũ"/>
+                <Input required setRef={reNewPasswordRef} state={rePassword} setState={setRePassword} type="password" topic="Nhập lại mật khẩu mới"/>
                 <Button onSubmit={handleSubmit} text="Lưu"/>
             </div>
         </div>

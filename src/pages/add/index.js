@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import Dropdown from "~/components/dropdown";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading } from "~/provider/action";
+import { setLoading, setPoPup } from "~/provider/action";
 import { apiLink, userKey } from "~/key";
 import { useNavigate } from "react-router-dom";
 import { pages } from "~/config";
@@ -22,10 +22,11 @@ import { pages } from "~/config";
 const cx = classNames.bind(styles);
 
 function Add() {
-  const [state, dispatch] = useGlobalState();
+  const [, dispatch] = useGlobalState();
   const navigate = useNavigate();
 
   const nameMessageRef = useRef();
+  const barcodeMessageRef = useRef();
   const priceMessageRef = useRef();
   const descriptionMessageRef = useRef();
   const discountMessageRef = useRef();
@@ -33,6 +34,7 @@ function Add() {
   const resetCategoryRef = useRef();
 
   const [name, setName] = useState("");
+  const [barcode, setBarcode] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [discount, setDiscount] = useState("");
@@ -70,6 +72,12 @@ function Add() {
       nameMessageRef.current.textContent = nameValidate;
     }
 
+    const nameBarcode = validateForm(barcode, [notEmpty]);
+    if (typeof nameBarcode === "string") {
+      flag = false;
+      barcodeMessageRef.current.textContent = nameBarcode;
+    }
+
     const priceValidate = validateForm(price, [notEmpty, isNumber]);
     if (typeof priceValidate === "string") {
       flag = false;
@@ -103,6 +111,7 @@ function Add() {
     if (flag) {
       const formData = new FormData();
       formData.append("name", name);
+      formData.append("barcode", barcode);
       formData.append("price", price);
       formData.append("description", description);
       formData.append("discount", discount);
@@ -122,12 +131,12 @@ function Add() {
         .post(`${apiLink}product/create-product`, formData, { headers })
         .then((response) => {
           if (response.data.status === 200) {
-            alert(response.data.message);
+            dispatch(setPoPup({ type: true, text: response.data.message }))
           } else {
             if(response.data.status === 500){
-              alert(response.data.message);
+              dispatch(setPoPup({ type: false, text: response.data.message }))
             }else{
-              alert('Có lỗi, thử lại sau !');
+              dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
             }
           }
           resetInput();
@@ -139,7 +148,7 @@ function Add() {
             navigate(pages.login)
           }else{
             resetInput();
-            alert("Có lỗi, vui lòng thử lại !!");
+            dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
           }
           dispatch(setLoading(false))
         })
@@ -177,7 +186,7 @@ function Add() {
           navigate(pages.login)
         }else{
           resetInput();
-          alert("Có lỗi, vui lòng thử lại !!");
+          dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
         }
         dispatch(setLoading(false))
       })
@@ -227,6 +236,13 @@ function Add() {
           topic={"Tên sản phẩm"}
           state={name}
           setState={setName}
+          required={true}
+        />
+        <Input
+          setRef={barcodeMessageRef}
+          topic={"Mã sản phẩm"}
+          state={barcode}
+          setState={setBarcode}
           required={true}
         />
         <Input

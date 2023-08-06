@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../button";
 import { PRODUCT_STATUS } from "~/enum";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading, setRender } from "~/provider/action";
+import { setLoading, setPoPup, setRender } from "~/provider/action";
 import axios from "axios";
 import { apiLink, userKey } from "~/key";
 import { pages } from "~/config";
@@ -22,7 +22,6 @@ function Table({ data = [], to = "" }) {
     if (!user) {
       return navigate(pages.login);
     }
-    console.log(user.accessToken)
     const headers = {
       Authorization: `Bearer ${user.accessToken}`
     };
@@ -31,16 +30,13 @@ function Table({ data = [], to = "" }) {
     }
     dispatch(setLoading());
       axios
-        .put(apiLink + `product/approve-product/`, data, { headers})
+        .put(apiLink + `product/approve-product/`, data, { headers })
         .then((response) => {
           if (response.data.status === 200) {
             dispatch(setRender())
-            alert("Phê duyệt thành công");
+            dispatch(setPoPup({ type: true, text: 'Phê duyệt thành công !' }))
           } else {
-            alert("Có lỗi, vui lòng thử lại sau");
-          }
-          if(response.data.tatus === 401){
-            alert('Lỗi 401')
+            dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
           }
           dispatch(setLoading(false));
         })
@@ -48,9 +44,9 @@ function Table({ data = [], to = "" }) {
           if (error.response && error.response.status === 401) {
             localStorage.setItem(userKey, null);
             navigate(pages.login);
-            alert("phiên đăng nhập đã hết hạn vui lòng đăng nhập lại !");
+            dispatch(setPoPup({ type: false, text: "phiên đăng nhập đã hết hạn vui lòng đăng nhập lại !" }))
           } else {
-            alert("Có lỗi, thử lại sau");
+            dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
           }
           dispatch(setLoading(false));
         })

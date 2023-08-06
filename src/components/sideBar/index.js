@@ -4,6 +4,7 @@ import Menu from "../menu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight, faAtom, faPenToSquare, faList, faUserPlus, faKey } from "@fortawesome/free-solid-svg-icons";
 import { pages } from "~/config";
+import { faShopify } from "@fortawesome/free-brands-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +22,7 @@ function SideBar({width, onWidth}) {
         </div>
         }
         {
-            width && <div className={cx("shop-name")}>SUPERMAKET</div>
+            width && <div className={cx("shop-name")}>SUPERMARKET</div>
         }
         <div className={cx('navigation')}>
             { width && <div onClick={onWidth} className={cx('navigation-item')}><FontAwesomeIcon icon={faAngleLeft} /></div> }
@@ -31,6 +32,7 @@ function SideBar({width, onWidth}) {
 
       <div className={cx("list-menu")}>
         <Menu icon={faAtom} name={"Giới thiệu dự án"} to={pages.home} width={width} />
+        <Menu icon={faShopify} name={"Mua Sắm"} to={pages.product} width={width} /> 
         <Menu icon={faPenToSquare} name={"Thêm Sản Phẩm"} to={pages.add} width={width} />
         <Menu icon={faList} name={"Danh Sách Sản Phẩm"} to={pages.listProductAdmin} width={width} />
         <Menu icon={faUserPlus} name={"Thêm Người Dùng"} to={pages.register} width={width} />

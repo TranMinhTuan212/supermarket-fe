@@ -5,6 +5,8 @@ import { publicRoutes } from './routes';
 import { Suspense, lazy } from 'react';
 import Loading from './components/lazy-loading';
 import { useGlobalState } from './provider/useGlobalState';
+import OrderBox from './components/order-box';
+import PoPup from './components/po-pup';
 
 
 const cx = classNames.bind(styles)
@@ -35,6 +37,8 @@ function App() {
             </Router>
        </Suspense>
        { state.isLoading && <Loading/> }
+       { state.order &&  <div className={cx('order-box')}><OrderBox/></div> }
+       { state.popup && <div className={cx('po-pup')}><PoPup text={state.popup.text} type={state.popup.type}/></div> }
     </div>
   );
 }

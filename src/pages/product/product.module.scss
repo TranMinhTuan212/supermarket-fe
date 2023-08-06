@@ -1,0 +1,32 @@
+.wapper{
+    padding: 3rem;
+}
+
+.header{
+
+}
+
+.header-topic{
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: .8;
+    padding-bottom: 1rem;
+}
+
+.search{
+    display: flex;
+    justify-content: start;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.pagination{
+    width: fit-content;
+    margin-left: auto;
+    padding: 3rem;
+}

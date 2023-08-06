@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiLink, imageLink, userKey } from "~/key";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading } from "~/provider/action";
+import { setLoading, setPoPup } from "~/provider/action";
 import StatusTem from "~/components/status-tem";
 import { pages } from "~/config";
+import { ROLE } from "~/enum";
 
 const cx = classNames.bind(styles);
 
@@ -23,44 +24,45 @@ function Detail() {
     description: "",
     discount: "",
     status: "",
-    image: ''
+    image: "",
   });
   const [, dispatch] = useGlobalState();
   const navigate = useNavigate();
 
+  
+  const user = JSON.parse(localStorage.getItem(userKey));
+
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem(userKey));
     if (!user) {
       navigate(pages.login);
-      alert("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại");
+      dispatch(setPoPup({ type: false, text:  "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại !"}))
     }
     const headers = {
       Authorization: `Bearer ${user.accessToken}`,
     };
     dispatch(setLoading(false));
 
-      axios
-        .get(`${apiLink}product/detail/${param.id}`, { headers})
-        .then((response) => {
-          if(response.data.status === 200){
-            response.data.data && setProduct(response.data.data)
-          }
-          else{
-            alert('Cố lỗi, thử lại sau !')
-          }
-          dispatch(setLoading(false))
-        })
-        .catch((error)=>{
-          if (error.response && error.response.status === 401) {
-            dispatch(setLoading(false));
-            localStorage.setItem(userKey, null);
-            navigate(pages.login);
-            alert("phiên đăng nhập đã hết hạn vui lòng đăng nhập lại !");
-          } else {
-            alert("Có lôi, thử lại sau");
-          }
+    axios
+      .get(`${apiLink}product/detail/${param.id}`, { headers })
+      .then((response) => {
+        if (response.data.status === 200) {
+          response.data.data && setProduct(response.data.data);
+        } else {
+          dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
+        }
+        dispatch(setLoading(false));
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
           dispatch(setLoading(false));
-        })
+          localStorage.setItem(userKey, null);
+          navigate(pages.login);
+          dispatch(setPoPup({ type: false, text:  "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại !"}))
+        } else {
+          dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
+        }
+        dispatch(setLoading(false));
+      });
   }, []);
 
   return (
@@ -93,6 +95,7 @@ function Detail() {
 
         <div className={cx("input-wapper")}>
           <Input state={product.name} small topic={"Tên sản phẩm"} disabled />
+          <Input state={product.barcode} small topic={"Mã sản phẩm"} disabled />
           <Input
             state={`${product.price}`}
             small
@@ -128,7 +131,9 @@ function Detail() {
             disabled
           />
         </div>
-        <Button icon={""} text="Sửa" />
+        {
+          user.role === ROLE.SUPPLIER ? <Button icon={""} text="Sửa" /> : ''
+        }
       </div>
     </div>
   );

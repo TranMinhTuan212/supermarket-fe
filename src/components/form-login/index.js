@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import { notEmpty, validateForm } from "~/validation";
 import axios from "axios";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading, setUser } from "~/provider/action";
+import { setLoading, setPoPup, setUser } from "~/provider/action";
 import { useNavigate } from "react-router-dom";
 import { pages } from "~/config";
 import { apiLink, userKey } from "~/key";
@@ -37,7 +37,7 @@ function FormLogin() {
         const validatePassword = validateForm(password, [notEmpty])
         if(typeof validatePassword === 'string'){
             flag = false
-            passwordRef.current.textContent = validateEmail
+            passwordRef.current.textContent = validatePassword
         }
 
         if(flag){
@@ -55,6 +55,7 @@ function FormLogin() {
                   profileImage: response.data.data.userInfo.profileImage,
                   accessToken: response.data.data.accessToken,
                   refreshToken: response.data.data.refreshToken,
+                  role: response.data.data.userInfo.role
                 }
                 localStorage.setItem(userKey, JSON.stringify(user))
                 const userLogin = {
@@ -66,9 +67,9 @@ function FormLogin() {
                 navigate(pages.home)
               }else{
                 if(response.data.status === 500){
-                  alert('Tên đăng nhập hoặc mật khẩu không đúng !')
+                  dispatch(setPoPup({ type: false, text: 'Tên đăng nhập hoặc mật khẩu không đúng !' }))
                 }else{
-                  alert('Có lỗi !!!')
+                  dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
                 }
               }
               dispatch(setLoading(false))
@@ -77,9 +78,9 @@ function FormLogin() {
               if(error.response && error.response.status === 401){
                 localStorage.setItem(userKey, null)
                 navigate(pages.login)
-                alert('Phiên đăng nhập đã hết hạn vui lòng đăng nhập lại !')
+                dispatch(setPoPup({ type: false, text: 'Phiên đăng nhập đã hết hạn vui lòng đăng nhập lại !' }))
               }else{
-                alert('Có lỗi, thử lại sau')
+                dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau !' }))
               }
               dispatch(setLoading(false))
             })

@@ -1,0 +1,13 @@
+.order-box{
+    position: fixed;
+    inset: 0;
+    background-color: var(--background-opacity);
+    z-index: 9999;
+}
+
+.po-pup{
+    position: fixed;
+    inset: 0;
+    background-color: var(--background-opacity);
+    z-index: 99999;
+}

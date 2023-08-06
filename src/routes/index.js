@@ -2,11 +2,13 @@ import { pages } from "~/config";
 import DefaultLayout from "~/layouts/defaultLayout/defauluLayout";
 import LoginLayout from "~/layouts/loginLayout";
 import Add from "~/pages/add";
+import Cart from "~/pages/cart";
 import Detail from "~/pages/detail";
 import Home from "~/pages/home";
 import ListProductAdmin from "~/pages/list-produc-admin";
 import Login from "~/pages/login";
 import Password from "~/pages/password";
+import Product from "~/pages/product";
 import Register from "~/pages/register";
 
 
@@ -32,5 +34,11 @@ export const publicRoutes = [
     },
     {
         path: pages.password, layout: DefaultLayout, page: Password
+    },
+    {
+        path: pages.product, layout: DefaultLayout, page: Product
+    },
+    {
+        path: pages.cart, layout: DefaultLayout, page: Cart
     }
 ]

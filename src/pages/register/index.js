@@ -9,7 +9,7 @@ import { notEmpty, validateForm } from "~/validation";
 import axios from "axios";
 import { apiLink, userKey } from "~/key";
 import { useGlobalState } from "~/provider/useGlobalState";
-import { setLoading } from "~/provider/action";
+import { setLoading, setPoPup } from "~/provider/action";
 import { useNavigate } from "react-router-dom";
 import { pages } from "~/config";
 
@@ -76,9 +76,9 @@ function Register() {
           .post(apiLink + "user/register", data, { headers })
           .then((response) => {
             if (response.data.status && response.data.status === 200) {
-              alert(response.data.message);
+              dispatch(setPoPup({ type: true, text: response.data.message }))
             } else {
-              alert('Có lỗi, thử lại sau');
+              dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau' }))
             }
             setName("");
             setEmail("");
@@ -89,10 +89,11 @@ function Register() {
           .catch((error)=>{
             if(error.response && error.response.status === 401){
               localStorage.setItem(userKey, null)
+              dispatch(setPoPup({ type: false, text: 'Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại !' }))
               navigate(pages.login)
             }else{
               dispatch(setLoading(false))
-              alert('Có lỗi, thử lại sau !')
+              dispatch(setPoPup({ type: false, text: 'Có lỗi, thử lại sau' }))
             }
             dispatch(setLoading(false))
           })

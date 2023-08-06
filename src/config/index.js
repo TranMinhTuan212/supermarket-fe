@@ -5,5 +5,7 @@ export const pages = {
     listProductAdmin: '/list-product-admin',
     detail: '/detail/:id',
     register: '/register',
-    password: '/password'
+    password: '/password',
+    product: '/product',
+    cart: '/cart'
 }

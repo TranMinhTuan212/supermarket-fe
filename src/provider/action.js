@@ -1,6 +1,8 @@
 import {
     SET_LOADING,
     SET_LOGIN,
+    SET_ORDER,
+    SET_POPUP,
     SET_RENDER,
     SET_USER
 }
@@ -20,6 +22,13 @@ export const setLoading = payload => {
     }
 }
 
+export const setPoPup = payload => {
+    return {
+        type: SET_POPUP,
+        payload
+    }
+}
+
 export const setUser = payload => {
     return {
         type: SET_USER,
@@ -30,5 +39,12 @@ export const setUser = payload => {
 export const setRender = () => {
     return {
         type: SET_RENDER
+    }
+}
+
+export const setOrder = payload => {
+    return {
+        type: SET_ORDER,
+        payload
     }
 }
